@@ -1,0 +1,5 @@
+---
+global:
+  hostname: 'vyos-router.engyak.net'
+  domain: 'engyak.net'
+  timezone: 'US/Alaska'

@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Import Vars...
+      include_vars:
+        file: vyos-s0.yml
+    - name: Combine vyos...
+      template: 
+        src: templates/vyos-spine.j2
+        dest: vyos-s0-compiled.conf
