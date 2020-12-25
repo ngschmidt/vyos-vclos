@@ -53,19 +53,19 @@ protocols {
         maximum-paths {
             ebgp 2
         }
-        neighbor {{ bgp.leaf1 }} {
+        neighbor {{ bgp.leaf1.ipv4 }} {
             address-family {
                 ipv4-unicast {
                 }
             }
-            remote-as {{ bgp.leaf1asn }}
+            remote-as {{ bgp.leaf1.asn }}
         }
-        neighbor {{ bgp.leaf2 }} {
+        neighbor {{ bgp.leaf2.ipv4 }} {
             address-family {
                 ipv4-unicast {
                 }
             }
-            remote-as {{ bgp.leaf2asn }}
+            remote-as {{ bgp.leaf2.asn }}
         }
         parameters {
             graceful-restart {

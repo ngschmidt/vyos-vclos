@@ -55,19 +55,19 @@ protocols {
         maximum-paths {
             ebgp 2
         }
-        neighbor {{ bgp.spine1 }} {
+        neighbor {{ bgp.spine1.ipv4 }} {
             address-family {
                 ipv4-unicast {
                 }
             }
-            remote-as {{ bgp.spine1asn }}
+            remote-as {{ bgp.spine1.asn }}
         }
-        neighbor {{ bgp.spine2 }} {
+        neighbor {{ bgp.spine2.ipv4 }} {
             address-family {
                 ipv4-unicast {
                 }
             }
-            remote-as {{ bgp.spine2asn }}
+            remote-as {{ bgp.spine2.asn }}
         }
         parameters {
             graceful-restart {

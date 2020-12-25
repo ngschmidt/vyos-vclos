@@ -16,9 +16,11 @@ interfaces:
 bgp:
   asn: '64908'
   rid: '10.6.198.0'
-  leaf1: '10.6.192.1'
-  leaf1asn: '64916'
-  leaf2: '10.6.192.3'
-  leaf2asn: '64917'
+  leaf1:
+    ipv4: '10.6.192.1'
+    asn: '64916'
+  leaf2:
+    ipv4: '10.6.192.3'
+    asn: '64917'
   keepalive: '4'
   holdtime: '12'

@@ -16,9 +16,11 @@ interfaces:
 bgp:
   asn: '64916'
   rid: '10.6.196.1'
-  spine1: '10.6.192.0'
-  spine1asn: '64908'
-  spine2: '10.6.194.0'
-  spine2asn: '64909'
+  spine1:
+    ipv4: '10.6.192.0'
+    asn: '64908'
+  spine2: 
+    ipv4: '10.6.194.0'
+    asn: '64909'
   keepalive: '4'
   holdtime: '12'
