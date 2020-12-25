@@ -1,6 +1,6 @@
 ---
 global:
-  hostname: 'vyos-router.engyak.net'
+  hostname: 'vyos-l0.engyak.net'
   domain: 'engyak.net'
   timezone: 'US/Alaska'
 interfaces:
@@ -22,4 +22,3 @@ bgp:
   spine2asn: '64909'
   keepalive: '4'
   holdtime: '12'
-ipv6:
