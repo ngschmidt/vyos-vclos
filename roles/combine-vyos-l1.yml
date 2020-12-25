@@ -4,7 +4,7 @@
     - name: Import Vars...
       include_vars:
         file: vyos-l1.yml
-    - name: Combine vyos...
+    - name: Combine vyos on {{ global.hostname }}
       template: 
         src: templates/vyos-leaf.j2
         dest: vyos-l1-compiled.conf

@@ -1,0 +1,5 @@
+---
+- hosts: vyos_vclos_leafs
+  tasks:
+    - name: Apply vyos on {{ ansible_hostname }}
+      ping:
