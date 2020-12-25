@@ -1,5 +1,24 @@
 ---
 global:
-  hostname: 'vyos-router.engyak.net'
+  hostname: 'vyos-s0.engyak.net'
   domain: 'engyak.net'
   timezone: 'US/Alaska'
+interfaces:
+  eth1:
+    ipv4: '10.6.192.0/31'
+    ipv6: '2610:100:6000:de0::1/64'
+  eth2:
+    ipv4: '10.6.192.2/31'
+    ipv6: '2610:100:6000:de1::1/64'
+  l0:
+    ipv4: '10.6.198.0/32'
+    ipv6: '2610:100:6000:def::/128'
+bgp:
+  asn: '64908'
+  rid: '10.6.198.0'
+  leaf1: '10.6.192.1'
+  leaf1asn: '64916'
+  leaf2: '10.6.192.3'
+  leaf2asn: '64917'
+  keepalive: '4'
+  holdtime: '12'

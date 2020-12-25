@@ -11,6 +11,76 @@ interfaces {
     loopback lo {
     }
 }
+interfaces {
+    ethernet eth0 {
+        address dhcp
+        ipv6 {
+            address {
+                autoconf
+            }
+        }
+        vrf mgmt
+    }
+    ethernet eth1 {
+        address {{ interfaces.eth1.ipv4 }}
+        address {{ interfaces.eth1.ipv6 }}
+    }
+    ethernet eth2 {
+        address {{ interfaces.eth2.ipv4 }}
+        address {{ interfaces.eth2.ipv6 }}
+    }
+    loopback lo {
+        address {{ interfaces.l0.ipv4 }}
+        address {{ interfaces.l0.ipv6 }}
+    }
+}
+protocols {
+    bgp {{ bgp.asn }} {
+        address-family {
+            ipv4-unicast {
+                redistribute {
+                    connected {
+                    }
+                }
+            }
+            ipv6-unicast {
+                redistribute {
+                    connected {
+                    }
+                }
+            }
+        }
+        maximum-paths {
+            ebgp 2
+        }
+        neighbor {{ bgp.leaf1 }} {
+            address-family {
+                ipv4-unicast {
+                }
+            }
+            remote-as {{ bgp.leaf1asn }}
+        }
+        neighbor {{ bgp.leaf2 }} {
+            address-family {
+                ipv4-unicast {
+                }
+            }
+            remote-as {{ bgp.leaf2asn }}
+        }
+        parameters {
+            graceful-restart {
+                stalepath-time 1
+            }
+            log-neighbor-changes
+            router-id {{ bgp.rid }}
+        }
+        timers {
+            holdtime {{ bgp.holdtime }}
+            keepalive {{ bgp.keepalive }}
+        }
+    }
+}
+
 service {
     ssh {
         port 22
