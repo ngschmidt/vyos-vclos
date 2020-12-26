@@ -7,14 +7,6 @@
   tasks:
     - name: Test Reachability on Spines!
       ping:
-- hosts: vclos_s0.engyak.net
-  tasks:
-    - name: Test Reachability on S0!
-      ping:
-- hosts: vclos_s1.engyak.net
-  tasks:
-    - name: Test Reachability on S1!
-      ping:
 - hosts: vclos_l0.engyak.net
   tasks:
     - name: Apply on L0!
@@ -22,7 +14,3 @@
         connection: network_cli
         src: 'vyos-l0-compiled.conf'
         save: yes
-- hosts: vclos_l1.engyak.net
-  tasks:
-    - name: Test Reachability on L1!
-      ping:
