@@ -1,5 +1,9 @@
 ---
 - hosts: vyos_vclos_leafs
   tasks:
-    - name: Apply vyos on {{ ansible_hostname }}
+    - name: Apply vyos on leafs
+      ping:
+- hosts: vyos_vclos_spines
+  tasks:
+    - name: Apply vyos on spines
       ping:
