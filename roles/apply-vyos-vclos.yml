@@ -7,7 +7,7 @@
   tasks:
     - name: Test Reachability on Spines!
       ping:
-- hosts: vclos_s0
+- hosts: vclos_s0.engyak.net
   tasks:
     - name: Test Reachability on S0!
       ping:
