@@ -17,8 +17,10 @@
       ping:
 - hosts: vclos_l0.engyak.net
   tasks:
-    - name: Test Reachability on L0!
-      ping:
+    - name: Apply on L0!
+      vyos.vyos.vyos_config:
+        src: 'vyos-l0-compiled.conf'
+        save: yes
 - hosts: vclos_l1.engyak.net
   tasks:
     - name: Test Reachability on L1!
