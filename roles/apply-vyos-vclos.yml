@@ -1,9 +1,13 @@
 ---
 - hosts: vyos_vclos_leafs
   tasks:
-    - name: Apply vyos on leafs
+    - name: Test Reachability on Leafs!
       ping:
 - hosts: vyos_vclos_spines
   tasks:
-    - name: Apply vyos on spines
+    - name: Test Reachability on Spines!
+      ping:
+- hosts: vclos_s0
+  tasks:
+    - name: Test Reachability on S0!
       ping:
