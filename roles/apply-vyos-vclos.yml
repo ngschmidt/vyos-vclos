@@ -1,8 +1,4 @@
 ---
-- hosts: localhost
-  tasks:
-    - name: Import Variables...
-      include_vars: 'os_vars/vyos.vyos.yml'
 - hosts: vyos_vclos_leafs
   tasks:
     - name: Test Reachability on Leafs!
