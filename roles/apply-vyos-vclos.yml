@@ -13,3 +13,21 @@
       vyos.vyos.vyos_config:
         src: 'vyos-l0-compiled.conf'
         save: yes
+- hosts: vclos_l1.engyak.net
+  tasks:
+    - name: Apply on L1!
+      vyos.vyos.vyos_config:
+        src: 'vyos-l1-compiled.conf'
+        save: yes
+- hosts: vclos_s0.engyak.net
+  tasks:
+    - name: Apply on S0!
+      vyos.vyos.vyos_config:
+        src: 'vyos-s0-compiled.conf'
+        save: yes
+- hosts: vclos_s1.engyak.net
+  tasks:
+    - name: Apply on S1!
+      vyos.vyos.vyos_config:
+        src: 'vyos-S1-compiled.conf'
+        save: yes
