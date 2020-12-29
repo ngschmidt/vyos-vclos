@@ -1,5 +1,5 @@
 ---
-- hosts: dnf_updates
+- hosts: vyos_vclos_leafs
   tasks:
     - name: Test Reachability on Leafs!
       ping:
