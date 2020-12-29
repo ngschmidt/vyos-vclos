@@ -29,5 +29,5 @@
   tasks:
     - name: Apply on S1!
       vyos.vyos.vyos_config:
-        src: 'vyos-S1-compiled.conf'
+        src: 'vyos-s1-compiled.conf'
         save: yes
