@@ -39,11 +39,11 @@ interfaces {
 policy {
     prefix-list {{ policy.prefixout.name }} {
         description "{{ policy.prefixout.description }}"
-        {{ policy.prefixout.contents }}
+{{ policy.prefixout.contents | indent( width=4, indentfirst=True) }}
     }
     prefix-list {{ policy.prefixin.name }} {
         description "{{ policy.prefixin.description }}"
-        {{ policy.prefixin.contents }}
+{{ policy.prefixin.contents | indent( width=4, indentfirst=True) }}
     }
     route-map {{ policy.prefixout.name }}-route-map {
         rule 10 {
