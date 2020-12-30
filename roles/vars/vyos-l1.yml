@@ -45,7 +45,7 @@ policy:
     name: 'INBOUND-SPINE'
     description: "Accept inbound spine routes"
     contents: |-
-        rule 10 {
-                action permit
-                prefix 10.6.192.0/19
-            }
+      rule 10 {
+          action permit
+          prefix 10.6.192.0/19
+      }
