@@ -30,22 +30,22 @@ policy:
     description: "Advertise Connected routes"
     contents: |-
       rule 10 {
-      \t\t\taction permit
-      \t\t\tprefix 10.6.196.0/24
-      \t\t}
-      \t\trule 20 {
-      \t\t\taction permit
-      \t\t\tprefix 10.6.192.0/31
-      \t\t}
-      \t\trule 30 {
-      \t\t\taction permit
-      \t\t\tprefix 10.6.194.0/31
-      \t\t}
+          action permit
+          prefix 10.6.196.0/24
+      }
+      rule 20 {
+          action permit
+          prefix 10.6.192.0/31
+      }
+      rule 30 {
+          action permit
+          prefix 10.6.194.0/31
+      }
   prefixin:
     name: 'INBOUND-SPINE'
     description: "Accept inbound spine routes"
     contents: |-
       rule 10 {
-      \t\t\taction permit
-      \t\t\tprefix 10.6.192.0/19
-      \t\t}
+          action permit
+          prefix 10.6.192.0/19
+      }
