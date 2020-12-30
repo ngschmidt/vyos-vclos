@@ -39,7 +39,7 @@ interfaces {
 policy {
     prefix-list {{ policy.prefixout.name }} {
         description "{{ policy.prefixout.description }}"
-        {{ policy.prefixout.name }}
+        {{ policy.prefixout.contents }}
     }
     prefix-list {{ policy.prefixin.name }} {
         description "{{ policy.prefixin.description }}"
