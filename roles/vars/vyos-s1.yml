@@ -47,5 +47,7 @@ policy:
     contents: |-
       rule 10 {
           action permit
+          ge 20
+          le 32
           prefix 10.6.192.0/19
       }
