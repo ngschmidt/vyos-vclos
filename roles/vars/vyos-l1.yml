@@ -24,3 +24,28 @@ bgp:
     asn: '64909'
   keepalive: '4'
   holdtime: '12'
+policy:
+  prefixout:
+    name: 'ADVERTISE-CONNECTED'
+    description: "Advertise Connected routes"
+    contents: |-
+        rule 10 {
+            action permit
+            prefix 10.6.197.0/24
+        }
+        rule 20 {
+            action permit
+            prefix 10.6.192.2/31
+        }
+        rule 30 {
+            action permit
+            prefix 10.6.194.2/31
+        }
+  prefixin:
+    name: 'INBOUND-SPINE'
+    description: "Accept inbound spine routes"
+    contents: |-
+        rule 10 {
+            action permit
+            prefix 10.6.192.0/19
+        }

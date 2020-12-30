@@ -37,46 +37,33 @@ interfaces {
     }
 }
 policy {
-    prefix-list ADVERTISE-CONNECTED {
-        description "Advertise connected routes via BGP"
-        rule 10 {
-            action permit
-            prefix 10.6.196.0/24
-        }
-        rule 20 {
-            action permit
-            prefix 10.6.192.0/31
-        }
-        rule 30 {
-            action permit
-            prefix 10.6.194.0/31
-        }
+    prefix-list {{ policy.prefixout.name }} {
+        description "{{ policy.prefixout.description }}"
+        {{ policy.prefixout.name }}
     }
-    prefix-list SPINE-INBOUND {
-        rule 10 {
-            action permit
-            prefix 10.6.192.0/19
-        }
+    prefix-list {{ policy.prefixin.name }} {
+        description "{{ policy.prefixin.description }}"
+        {{ policy.prefixin.contents }}
     }
-    route-map ADVERTISE-CONNECTED-route-map {
+    route-map {{ policy.prefixout.name }}-route-map {
         rule 10 {
             action permit
             match {
                 ip {
                     address {
-                        prefix-list ADVERTISE-CONNECTED
+                        prefix-list {{ policy.prefixout.name }}
                     }
                 }
             }
         }
     }
-    route-map INBOUND-SPINE-route-map {
+    route-map {{ policy.prefixin.name }}-route-map {
         rule 10 {
             action permit
             match {
                 ip {
                     address {
-                        prefix-list SPINE-INBOUND
+                        prefix-list {{ policy.prefixin.name }}
                     }
                 }
             }
@@ -106,8 +93,8 @@ protocols {
             address-family {
                 ipv4-unicast {
                     route-map {
-                        export ADVERTISE-CONNECTED-route-map
-                        import INBOUND-SPINE-route-map
+                        export {{ policy.prefixout.name }}-route-map
+                        import {{ policy.prefixin.name }}-route-map
                     }
                 }
             }
@@ -117,8 +104,8 @@ protocols {
             address-family {
                 ipv4-unicast {
                     route-map {
-                        export ADVERTISE-CONNECTED-route-map
-                        import INBOUND-SPINE-route-map
+                        export {{ policy.prefixout.name }}-route-map
+                        import {{ policy.prefixin.name }}-route-map
                     }
                 }
             }
