@@ -90,6 +90,10 @@ protocols {
         neighbor {{ bgp.leaf1.ipv4 }} {
             address-family {
                 ipv4-unicast {
+                    route-map {
+                        export {{ policy.prefixout.name }}-route-map
+                        import {{ policy.prefixin.name }}-route-map
+                    }
                 }
             }
             remote-as {{ bgp.leaf1.asn }}
@@ -97,6 +101,10 @@ protocols {
         neighbor {{ bgp.leaf2.ipv4 }} {
             address-family {
                 ipv4-unicast {
+                    route-map {
+                        export {{ policy.prefixout.name }}-route-map
+                        import {{ policy.prefixin.name }}-route-map
+                    }
                 }
             }
             remote-as {{ bgp.leaf2.asn }}
