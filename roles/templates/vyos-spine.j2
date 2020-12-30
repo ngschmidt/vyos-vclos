@@ -34,6 +34,40 @@ interfaces {
         address {{ interfaces.l0.ipv6 }}
     }
 }
+policy {
+    prefix-list {{ policy.prefixout.name }} {
+        description "{{ policy.prefixout.description }}"
+        {{ policy.prefixout.contents }}
+    }
+    prefix-list {{ policy.prefixin.name }} {
+        description "{{ policy.prefixin.description }}"
+        {{ policy.prefixin.contents }}
+    }
+    route-map {{ policy.prefixout.name }}-route-map {
+        rule 10 {
+            action permit
+            match {
+                ip {
+                    address {
+                        prefix-list {{ policy.prefixout.name }}
+                    }
+                }
+            }
+        }
+    }
+    route-map {{ policy.prefixin.name }}-route-map {
+        rule 10 {
+            action permit
+            match {
+                ip {
+                    address {
+                        prefix-list {{ policy.prefixin.name }}
+                    }
+                }
+            }
+        }
+    }
+}
 protocols {
     bgp {{ bgp.asn }} {
         address-family {
@@ -80,7 +114,6 @@ protocols {
         }
     }
 }
-
 service {
     ssh {
         port 22
