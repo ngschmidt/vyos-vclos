@@ -5,7 +5,7 @@
       vyos.vyos.vyos_facts:
     - name: Print Facts on Leafs!
       ansible.builtin.debug:
-        var: ansible_facts
+        var: ansible_net_gather_subset
 - hosts: vyos_vclos_spines
   tasks:
     - name: Gather Facts on Spines!
