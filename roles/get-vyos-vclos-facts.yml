@@ -6,7 +6,7 @@
         gather_subset: all
     - name: Print Facts on Leafs!
       ansible.builtin.debug:
-        var: ansible_net_gather_subset
+        var: ansible_net_gather_network_resources
 - hosts: vyos_vclos_spines
   tasks:
     - name: Gather Facts on Spines!
