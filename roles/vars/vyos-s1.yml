@@ -27,23 +27,23 @@ bgp:
 policy:
   prefixout:
     name: 'ADVERTISE-CONNECTED'
-    description: "Advertise Connected routes"
+    description: "Spines don't ingest routes directly, so permit all routes"
     contents: |-
       rule 10 {
           action permit
-          prefix 10.6.194.0/31
+          ge 20
+          le 32
+          prefix 10.6.192.0/19
       }
       rule 20 {
           action permit
-          prefix 10.6.194.2/31
-      }
-      rule 30 {
-          action permit
-          prefix 10.6.198.1/32
+          prefix 0.0.0.0/0
+          ge 1
+          le 32
       }
   prefixin:
     name: 'INBOUND-SPINE'
-    description: "Accept inbound spine routes"
+    description: "Accept inbound fabric routes"
     contents: |-
       rule 10 {
           action permit
