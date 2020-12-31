@@ -6,5 +6,7 @@
   import_playbook: roles/combine-vyos-l0.yml
 - name: Combine vyos-l1 configuration
   import_playbook: roles/combine-vyos-l1.yml
-- name: Apply vyos vClos leafs!
+- name: Apply vyos vClos configurations!
   import_playbook: roles/apply-vyos-vclos.yml  
+- name: Test vyos vClos topology!
+  import_playbook: roles/get-vyos-vclos-facts.yml

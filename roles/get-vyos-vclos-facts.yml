@@ -1,0 +1,9 @@
+---
+- hosts: vyos_vclos_leafs
+  tasks:
+    - name: Test Reachability on Leafs!
+      vyos.vyos.vyos_facts:
+- hosts: vyos_vclos_spines
+  tasks:
+    - name: Test Reachability on Spines!
+      vyos.vyos.vyos_facts:
