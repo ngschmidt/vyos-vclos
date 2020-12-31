@@ -27,7 +27,7 @@ bgp:
 policy:
   prefixout:
     name: 'ADVERTISE-CONNECTED'
-    description: "Spines don't ingest routes directly, so permit all routes"
+    description: "Spines dont ingest routes directly, so permit all routes"
     contents: |-
       rule 10 {
           action permit
