@@ -34,6 +34,40 @@ interfaces {
         address {{ interfaces.l0.ipv6 }}
     }
 }
+policy {
+    prefix-list {{ policy.prefixout.name }} {
+        description "{{ policy.prefixout.description }}"
+{{ policy.prefixout.contents | indent( width=8, indentfirst=True) }}
+    }
+    prefix-list {{ policy.prefixin.name }} {
+        description "{{ policy.prefixin.description }}"
+{{ policy.prefixin.contents | indent( width=8, indentfirst=True) }}
+    }
+    route-map {{ policy.prefixout.name }}-route-map {
+        rule 10 {
+            action permit
+            match {
+                ip {
+                    address {
+                        prefix-list {{ policy.prefixout.name }}
+                    }
+                }
+            }
+        }
+    }
+    route-map {{ policy.prefixin.name }}-route-map {
+        rule 10 {
+            action permit
+            match {
+                ip {
+                    address {
+                        prefix-list {{ policy.prefixin.name }}
+                    }
+                }
+            }
+        }
+    }
+}
 protocols {
     bgp {{ bgp.asn }} {
         address-family {
@@ -56,6 +90,10 @@ protocols {
         neighbor {{ bgp.leaf1.ipv4 }} {
             address-family {
                 ipv4-unicast {
+                    route-map {
+                        export {{ policy.prefixout.name }}-route-map
+                        import {{ policy.prefixin.name }}-route-map
+                    }
                 }
             }
             remote-as {{ bgp.leaf1.asn }}
@@ -63,6 +101,10 @@ protocols {
         neighbor {{ bgp.leaf2.ipv4 }} {
             address-family {
                 ipv4-unicast {
+                    route-map {
+                        export {{ policy.prefixout.name }}-route-map
+                        import {{ policy.prefixin.name }}-route-map
+                    }
                 }
             }
             remote-as {{ bgp.leaf2.asn }}
@@ -80,7 +122,6 @@ protocols {
         }
     }
 }
-
 service {
     ssh {
         port 22

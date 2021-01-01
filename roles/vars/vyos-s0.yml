@@ -24,3 +24,30 @@ bgp:
     asn: '64917'
   keepalive: '4'
   holdtime: '12'
+policy:
+  prefixout:
+    name: 'ADVERTISE-CONNECTED'
+    description: "Spines dont ingest routes directly, so permit all routes"
+    contents: |-
+      rule 10 {
+          action permit
+          ge 20
+          le 32
+          prefix 10.6.192.0/19
+      }
+      rule 20 {
+          action permit
+          prefix 0.0.0.0/0
+          ge 1
+          le 32
+      }
+  prefixin:
+    name: 'INBOUND-SPINE'
+    description: "Accept inbound fabric routes"
+    contents: |-
+      rule 10 {
+          action permit
+          ge 20
+          le 32
+          prefix 10.6.192.0/19
+      }
