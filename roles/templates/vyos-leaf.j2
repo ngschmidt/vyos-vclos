@@ -45,6 +45,14 @@ policy {
         description "{{ policy.prefixin.description }}"
 {{ policy.prefixin.contents | indent( width=8, indentfirst=True) }}
     }
+    prefix-list6 {{ policy.prefix6out.name }} {
+        description "{{ policy.prefix6out.description }}"
+{{ policy.prefix6out.contents | indent( width=8, indentfirst=True) }}
+    }
+    prefix-list6 {{ policy.prefix6in.name }} {
+        description "{{ policy.prefix6in.description }}"
+{{ policy.prefix6in.contents | indent( width=8, indentfirst=True) }}
+    }
     route-map {{ policy.prefixout.name }}-route-map {
         rule 10 {
             action permit
@@ -52,6 +60,16 @@ policy {
                 ip {
                     address {
                         prefix-list {{ policy.prefixout.name }}
+                    }
+                }
+            }
+        }
+        rule 20 {
+            action permit
+            match {
+                ipv6 {
+                    address {
+                        prefix-list {{ policy.prefix6out.name }}
                     }
                 }
             }
@@ -64,6 +82,16 @@ policy {
                 ip {
                     address {
                         prefix-list {{ policy.prefixin.name }}
+                    }
+                }
+            }
+        }
+        rule 20 {
+            action permit
+            match {
+                ipv6 {
+                    address {
+                        prefix-list {{ policy.prefix6in.name }}
                     }
                 }
             }
@@ -103,6 +131,28 @@ protocols {
         neighbor {{ bgp.spine2.ipv4 }} {
             address-family {
                 ipv4-unicast {
+                    route-map {
+                        export {{ policy.prefixout.name }}-route-map
+                        import {{ policy.prefixin.name }}-route-map
+                    }
+                }
+            }
+            remote-as {{ bgp.spine2.asn }}
+        }
+        neighbor {{ bgp.spine1.ipv6 }} {
+            address-family {
+                ipv6-unicast {
+                    route-map {
+                        export {{ policy.prefixout.name }}-route-map
+                        import {{ policy.prefixin.name }}-route-map
+                    }
+                }
+            }
+            remote-as {{ bgp.spine1.asn }}
+        }
+        neighbor {{ bgp.spine2.ipv6 }} {
+            address-family {
+                ipv6-unicast {
                     route-map {
                         export {{ policy.prefixout.name }}-route-map
                         import {{ policy.prefixin.name }}-route-map
