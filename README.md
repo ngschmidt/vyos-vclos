@@ -4,6 +4,10 @@
 
 Provide a base configuration to "jump-start" a basic Clos topology composed of Vyos VMs
 
+### Topology Diagram
+
+![Network Diagram](img/diagram.png)
+
 ### This Will
 
 - Set up interface `eth0` as a DHCP client
