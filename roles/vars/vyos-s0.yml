@@ -18,9 +18,11 @@ bgp:
   rid: '10.6.198.0'
   leaf1:
     ipv4: '10.6.192.1'
+    ipv6: '2610:100:6000:de0::2'
     asn: '64916'
   leaf2:
     ipv4: '10.6.192.3'
+    ipv6: '2610:100:6000:de1::2'
     asn: '64917'
   keepalive: '4'
   holdtime: '12'
@@ -50,4 +52,36 @@ policy:
           ge 20
           le 32
           prefix 10.6.192.0/19
+      }
+  prefix6out:
+    name: 'ADVERTISE-CONNECTED6'
+    description: "Advertise Connected IPv6 routes"
+    contents: |-
+      rule 10 {
+          action permit
+          prefix 2610:100:6000:de0::/64
+      }
+      rule 20 {
+          action permit
+          prefix 2610:100:6000:de1::/64
+      }
+      rule 30 {
+          action permit
+          prefix 2610:100:6000:def::/128
+      }
+      rule 40 {
+          action permit
+          ge 61
+          le 128
+          prefix 2610:100:6000:de0::/60
+      }
+  prefix6in:
+    name: 'INBOUND-SPINE6'
+    description: "Accept inbound IPv6 spine routes"
+    contents: |-
+      rule 10 {
+          action permit
+          ge 61
+          le 128
+          prefix 2610:100:6000:de0::/60
       }

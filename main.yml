@@ -1,3 +1,4 @@
+---
 - name: Combine vyos-s0 configuration
   import_playbook: roles/combine-vyos-s0.yml
 - name: Combine vyos-s1 configuration
@@ -7,4 +8,4 @@
 - name: Combine vyos-l1 configuration
   import_playbook: roles/combine-vyos-l1.yml
 - name: Apply vyos vClos configurations!
-  import_playbook: roles/apply-vyos-vclos.yml  
+  import_playbook: roles/apply-vyos-vclos.yml
