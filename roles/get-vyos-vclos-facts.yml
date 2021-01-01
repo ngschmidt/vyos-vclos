@@ -3,7 +3,7 @@
   tasks:
     - name: Gather Facts on Leafs!
       vyos.vyos.vyos_facts:
-        gather_subset: all
+        gather_network_resources: all
     - name: Print Facts on Leafs!
       ansible.builtin.debug:
         var: ansible_net_gather_network_resources
