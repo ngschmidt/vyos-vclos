@@ -69,6 +69,12 @@ policy:
           action permit
           prefix 2610:100:6000:def::/128
       }
+      rule 40 {
+          action permit
+          ge 61
+          le 128
+          prefix 2610:100:6000:de0::/60
+      }
   prefix6in:
     name: 'INBOUND-SPINE6'
     description: "Accept inbound IPv6 spine routes"
