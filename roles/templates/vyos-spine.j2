@@ -139,7 +139,7 @@ protocols {
             }
             remote-as {{ bgp.leaf2.asn }}
         }
-        neighbor {{ bgp.spine1.ipv6 }} {
+        neighbor {{ bgp.leaf1.ipv6 }} {
             address-family {
                 ipv6-unicast {
                     route-map {
@@ -148,9 +148,9 @@ protocols {
                     }
                 }
             }
-            remote-as {{ bgp.spine1.asn }}
+            remote-as {{ bgp.leaf1.asn }}
         }
-        neighbor {{ bgp.spine2.ipv6 }} {
+        neighbor {{ bgp.leaf2.ipv6 }} {
             address-family {
                 ipv6-unicast {
                     route-map {
@@ -159,7 +159,7 @@ protocols {
                     }
                 }
             }
-            remote-as {{ bgp.spine2.asn }}
+            remote-as {{ bgp.leaf2.asn }}
         }
         parameters {
             graceful-restart {
