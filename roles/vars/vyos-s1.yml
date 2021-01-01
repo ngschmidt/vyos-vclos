@@ -77,5 +77,5 @@ policy:
           action permit
           ge 61
           le 128
-          prefix 2610:1000:de0::/60
+          prefix 2610:100:de0::/60
       }
